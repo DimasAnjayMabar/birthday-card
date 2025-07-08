@@ -123,6 +123,28 @@
         .gallery-btn:active {
             transform: translateY(1px);
         }
+        
+        /* confetti */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f44336;
+            opacity: 0;
+            z-index: 1;
+            animation: confettiFall 8s linear forwards;
+        }
+        
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(200vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 
@@ -171,6 +193,25 @@
             }
         }
 
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#f44336', '#e91e63', '#ffeb3b', '#4caf50', '#2196f3', '#9c27b0'];
+
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.top = '80px'
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                confetti.style.animationDelay = (Math.random() * 3) + 's';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                document.body.appendChild(confetti);
+            }
+        }
+
         // Typing animation
         function typeWriter(text, element, speed) {
             let i = 0;
@@ -197,18 +238,13 @@
 
         // Birthday wish text
         const birthdayWish = `Dear Maqda,<br><br>
-        Wishing you the happiest of birthdays! 🎉🎂 May this special day bring you endless joy, laughter, and wonderful memories. 
-        You deserve all the happiness in the world because you're such an amazing person.<br><br>
-        May this year ahead be filled with success, good health, and the fulfillment of all your dreams. 
-        Thank you for being you - your kindness, warmth, and wonderful spirit brighten the lives of everyone around you.<br><br>
-        Enjoy your special day to the fullest! 🎈🎁<br><br>
-        With lots of love and best wishes,<br>
-        [Your Name]`;
+        Untuk desain Birthday Card yang sederhana tapi menarik, aku sarankan gaya CSS berikut: tampilan minimalis, huruf besar dan bersih, dan layout tengah. Di bawah ini contoh CSS yang cocok, lalu setelah itu aku jelaskan bagian pentingnya.
+        🎨 Rekomendasi CSS (inline di <style> atau file terpisah)`;
 
         // Initialize everything when page loads
         window.onload = function() {
             // Start balloons first
-            createBalloons();
+            createConfetti();
 
             // Delay typing slightly to let animations start
             setTimeout(() => {

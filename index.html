@@ -85,7 +85,7 @@
             background-color: #f44336;
             opacity: 0;
             z-index: 1;
-            animation: confettiFall 3s linear forwards;
+            animation: confettiFall 3s infinite linear forwards;
         }
         
         @keyframes confettiFall {
@@ -133,7 +133,7 @@
             <img src="assets/loading_fallback.gif" alt="Loading animation">
         </video>
     </div>
-    <p class="progress-text">Loading special memories... 5</p>
+    <p class="progress-text">Loading special memories... 10</p>
 
     <script>
         // Create balloons
@@ -186,7 +186,7 @@
         }
 
         // Countdown and redirect
-        let secondsLeft = 5;
+        let secondsLeft = 10;
         const countdownElement = document.querySelector('.progress-text');
 
         const countdown = setInterval(function() {
@@ -195,14 +195,14 @@
 
             if (secondsLeft <= 0) {
                 clearInterval(countdown);
-                window.location.href = 'main.html';
+                window.location.href = '';
             }
         }, 1000);
 
         // Fallback in case main.html doesn't exist
         setTimeout(function() {
-            window.location.href = 'main.html';
-        }, 5500);
+            window.location.href = '';
+        }, 10500);
 
         // Initialize animations
         window.onload = function() {
